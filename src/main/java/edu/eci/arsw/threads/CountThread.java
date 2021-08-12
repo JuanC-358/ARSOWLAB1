@@ -24,6 +24,6 @@ public class CountThread extends Thread {
    public CountThread(int a,int b) {
         A=a;
         B=b;
-        run();
+        start();
    }
 }

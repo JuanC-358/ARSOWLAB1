@@ -14,7 +14,7 @@ public class CountThreadsMain {
     public static void main(String a[]){
         new CountThread(0,99);
         new CountThread(100,199);
-        //new CountThread(new String[] {"200","299"});
+        new CountThread(200,299);
     }
 
 }
