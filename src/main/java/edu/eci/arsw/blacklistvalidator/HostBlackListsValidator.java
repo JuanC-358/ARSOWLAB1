@@ -29,7 +29,7 @@ public class HostBlackListsValidator {
      * @param ipaddress suspicious host's IP address.
      * @return  Blacklists numbers where the given host's IP address was found.
      */
-    public List<Integer> checkHost(String ipaddress){
+    public List<Integer> checkHost(String ipaddress,int N){
         
         LinkedList<Integer> blackListOcurrences=new LinkedList<>();
         
@@ -38,17 +38,34 @@ public class HostBlackListsValidator {
         HostBlacklistsDataSourceFacade skds=HostBlacklistsDataSourceFacade.getInstance();
         
         int checkedListsCount=0;
-        
-        for (int i=0;i<skds.getRegisteredServersCount() && ocurrencesCount<BLACK_LIST_ALARM_COUNT;i++){
-            checkedListsCount++;
-            
-            if (skds.isInBlackListServer(i, ipaddress)){
-                
-                blackListOcurrences.add(i);
-                
-                ocurrencesCount++;
+        int tamaño = Math.round(skds.getRegisteredServersCount() / N);
+        for(int i =0;i<N;i++)
+        {
+            if(i==0){
+                HostValidatorThread hilo=new  HostValidatorThread(0,tamaño,ipaddress);
+                ocurrencesCount+=hilo.getContador();
+                LinkedList<Integer> lista=hilo.getLista();
+                for(int j=0;j<lista.size();j++){
+                    blackListOcurrences.add(lista.get(i));
+                }
+            }
+            else if (i+1==N){
+                HostValidatorThread otroHilo = new  HostValidatorThread((tamaño*i)+1,skds.getRegisteredServersCount(),ipaddress);
+                ocurrencesCount+=otroHilo.getContador();
+                LinkedList<Integer> lista=otroHilo.getLista();
+                for(int j=0;j<lista.size();j++){
+                    blackListOcurrences.add(lista.get(i));
+                }
+            }else{
+                HostValidatorThread hiloFin =new  HostValidatorThread((tamaño*i)+1,tamaño*(i+1),ipaddress);
+                ocurrencesCount+=hiloFin.getContador();
+                LinkedList<Integer> lista=hiloFin.getLista();
+                for(int j=0;j<lista.size();j++){
+                    blackListOcurrences.add(lista.get(i));
+                }
             }
         }
+        
         
         if (ocurrencesCount>=BLACK_LIST_ALARM_COUNT){
             skds.reportAsNotTrustworthy(ipaddress);
