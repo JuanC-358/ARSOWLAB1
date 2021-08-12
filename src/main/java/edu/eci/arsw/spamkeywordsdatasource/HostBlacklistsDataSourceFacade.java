@@ -92,6 +92,7 @@ static ConcurrentHashMap<Touple<Integer,String>,Object> blistocurrences=new Conc
     
     public void reportAsNotTrustworthy(String host){
         LOG.info("HOST "+host+" Reported as NOT trustworthy");
+        System.out.println("HOST "+host+" Reported as NOT trustworthy");
         if (System.getProperty("threadsinfo")!=null &&  System.getProperty("threadsinfo").compareToIgnoreCase("true")==0) {
             System.out.println("Total threads:"+threadHits.keySet().size());
             System.out.println(lastConfig);
@@ -101,6 +102,7 @@ static ConcurrentHashMap<Touple<Integer,String>,Object> blistocurrences=new Conc
     
     public void reportAsTrustworthy(String host){
         LOG.info("HOST "+host+" Reported as trustworthy");
+        System.out.println("HOST "+host+" Reported as trustworthy");
     }
     
 }

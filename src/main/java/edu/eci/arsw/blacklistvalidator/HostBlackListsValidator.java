@@ -46,7 +46,7 @@ public class HostBlackListsValidator {
                 ocurrencesCount+=hilo.getContador();
                 LinkedList<Integer> lista=hilo.getLista();
                 for(int j=0;j<lista.size();j++){
-                    blackListOcurrences.add(lista.get(i));
+                    blackListOcurrences.add(lista.get(j));
                 }
             }
             else if (i+1==N){
@@ -54,14 +54,14 @@ public class HostBlackListsValidator {
                 ocurrencesCount+=otroHilo.getContador();
                 LinkedList<Integer> lista=otroHilo.getLista();
                 for(int j=0;j<lista.size();j++){
-                    blackListOcurrences.add(lista.get(i));
+                    blackListOcurrences.add(lista.get(j));
                 }
             }else{
                 HostValidatorThread hiloFin =new  HostValidatorThread((tamaño*i)+1,tamaño*(i+1),ipaddress);
                 ocurrencesCount+=hiloFin.getContador();
                 LinkedList<Integer> lista=hiloFin.getLista();
                 for(int j=0;j<lista.size();j++){
-                    blackListOcurrences.add(lista.get(i));
+                    blackListOcurrences.add(lista.get(j));
                 }
             }
         }
