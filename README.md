@@ -21,3 +21,18 @@ A partir de lo anterior, implemente la siguiente secuencia de experimentos para 
 * 50 hilos.
 * 100 hilos.
 ![alt text](https://github.com/JuanC-358/ARSWLAB1/blob/main/img/P3.PNG)
+
+### Parte IV - Ejercicio Black List Search
+
+* Según la ley de Amdahls:
+
+donde S(n) es el mejoramiento teórico del desempeño, P la fracción paralelizable del algoritmo, y n el número de hilos, a mayor n, mayor debería ser dicha mejora. Por qué el mejor desempeño no se logra con los 500 hilos?, cómo se compara este desempeño cuando se usan 200?.
+RTA:/ A Mayor hilos menor tiempo , pero llega un punto delimitado por los componentes del equipo en el que el tiempo ya no se podra reducir mas.
+
+* Cómo se comporta la solución usando tantos hilos de procesamiento como núcleos comparado con el resultado de usar el doble de éste.
+    RTA:/ El tiempo de solucion es menor pero requiere mas memoria para hacerlo*
+
+* De acuerdo con lo anterior, si para este problema en lugar de 100 hilos en una sola CPU se pudiera usar 1 hilo en cada una de 100 máquinas hipotéticas, la ley de Amdahls se aplicaría mejor?. Si en lugar de esto se usaran c hilos en 100/c máquinas distribuidas (siendo c es el número de núcleos de dichas máquinas), se mejoraría?. Explique su respuesta.
+RTA:/caso 1 : No estaríamos aplicando correctamente la Ley de Amdahls, ya que no estamos sacando el maximo provecho de dichos 
+   equipos, si tendríamos reducciones en la ejection de un programa, pero se podría reducir aún más. 
+   caso 2 :Estaríamos sacando el maximo provecho de ello, ya que además de ejecutar diferentes partes de un programa en diferentes equipos también estaríamos ejecutando al tiempo diferentes Hilos en un solo equipo por lo que  se reduce asi el tiempo de ejecución de cada una de las partes del programa que esté corriendo cada uno de los equipos generando a nivel global del programa una reduction enorme en comparación a usar un solo hilo por equipo.
