@@ -20,3 +20,4 @@ A partir de lo anterior, implemente la siguiente secuencia de experimentos para 
 * Tantos hilos como el doble de núcleos de procesamiento.
 * 50 hilos.
 * 100 hilos.
+![alt text](https://github.com/JuanC-358/ARSWLAB1/blob/main/img/P3.PNG)
